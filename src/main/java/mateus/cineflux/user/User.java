@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "tb_users")
+@Table(name = "tb_users", uniqueConstraints = @UniqueConstraint(columnNames = {"username"}))
 public class User implements UserDetails {
 
     @Id
@@ -17,6 +17,13 @@ public class User implements UserDetails {
     private UUID userId;
     private String username;
     private String password;
+
+    public User() {}
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
