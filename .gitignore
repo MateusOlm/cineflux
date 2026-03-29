@@ -34,3 +34,9 @@ build/
 
 ### Environment ###
 .env
+
+### Private Key ###
+src/main/resources/app.key
+
+### Public Key ###
+src/main/resources/app.pub

@@ -33,14 +33,16 @@ public class VeryPerRequest extends OncePerRequestFilter {
         String token = parseToken(request);
         if(token != null) {
             String username = jwtService.validateToken(token);
-            UserDetails user = userRepository.findByUsername(username);
-            UsernamePasswordAuthenticationToken usernamePassword = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(usernamePassword);
+            if (username != null) {
+                UserDetails user = userRepository.findByUsername(username);
+                UsernamePasswordAuthenticationToken usernamePassword = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+                SecurityContextHolder.getContext().setAuthentication(usernamePassword);
+            }
         }
         filterChain.doFilter(request, response);
     }
 
     private String parseToken(HttpServletRequest request) {
-        return cookieService.getJwtFromCookie(request);
+        return cookieService.getAccessFromCookie(request);
     }
 }

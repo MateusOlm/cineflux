@@ -5,11 +5,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ImpleDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
+public class ImplDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
 
     private UserRepository userRepository;
 
-    public ImpleDetailsService(UserRepository userRepository) {
+    public ImplDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
